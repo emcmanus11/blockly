@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+	<head>
+		<xml id="toolbox" style="display: none">
+			<block type="search_site"></block>
+			<block type="search_exact"></block>
+			<block type="do_not_include"></block>
+			<block type="within_this_range"></block>
+			<block type="wildcard"></block>
+			<block type="or"></block>
+		</xml>
+	</head>
+	<body>
+		<div id="blocklyDiv" style="height: 600px; width: 900px;"></div>
+		<script src="blockly_compressed.js"></script>
+		<script src="blocks_compressed.js"></script>
+		<script src="javascript_compressed.js"></script>
+		<script src="msg/js/en.js"></script>
+		<script src="custom_block_code.js"></script>
+		<script>
+			Blockly.inject(document.getElementById('blocklyDiv'),
+				{toolbox: document.getElementById('toolbox')});
+		</script>
+	</body>
+</html>
