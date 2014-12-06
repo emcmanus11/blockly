@@ -1,6 +1,7 @@
 <!doctype html>
 <html>
 	<head>
+		<meta charset="utf-8">
 		<xml id="toolbox" style="display: none">
 			<block type="search_site"></block>
 			<block type="search_exact"></block>
@@ -9,8 +10,27 @@
 			<block type="wildcard"></block>
 			<block type="or"></block>
 		</xml>
+		<style type="text/css">
+			#searchBox {
+				width: 100%;
+				height: 100px;
+			}
+
+			#searchText {
+				margin-left: auto;
+				margin-right: auto;
+				margin-top: 12px;
+				margin-bottom: 12px;
+				width: 900px;
+				height: 76px;
+				resize: none;
+			}
+		</style>
 	</head>
 	<body>
+		<div id="searchBox">
+			<textarea id="searchText" type="text"></textarea>
+		</div>
 		<div id="blocklyDiv" style="height: 600px; width: 900px;"></div>
 		<script src="blockly_compressed.js"></script>
 		<script src="blocks_compressed.js"></script>
@@ -20,6 +40,7 @@
 		<script>
 			Blockly.inject(document.getElementById('blocklyDiv'),
 				{toolbox: document.getElementById('toolbox')});
+			Blockly.addChangeListener(myUpdateFunction);
 		</script>
 	</body>
 </html>
