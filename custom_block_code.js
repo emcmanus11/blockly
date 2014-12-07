@@ -8,8 +8,8 @@ Blockly.Blocks['refine_search'] = {
     this.appendValueInput("NAME")
         .appendField("refine search");
     this.setTooltip('Drag the blocks to create a more specific search');
-    this.setDeletable(false);
-    this.setMovable(false);
+    // this.setDeletable(false);
+    // this.setMovable(false);
   }
 };
 
@@ -37,7 +37,7 @@ Blockly.Blocks['search_exact'] = {
 		    .appendField(new Blockly.FieldTextInput("cat paw"), "NAME3");
 		this.setOutput(true);
 		this.setTooltip('Search for these exact words in this exact order.');
-		this.setColour(65);
+		this.setColour(45);
 	}
 };
 
@@ -214,17 +214,23 @@ Blockly.JavaScript['or'] = function(block) {
 
 function myUpdateFunction() {
 	var code = Blockly.JavaScript.workspaceToCode();
-	code = code.substring(0, code.length - 3)
-	if (code.search("\n") <= -1) {
-		var textarea = document.getElementById('searchText'),
+	code = code.replace(/\s*;*\s*\n+\s*/g, " ");
+	var textarea = document.getElementById('searchText'),
 		currText = textarea.value
 		textarea.value = code;
-	}
 	return code;
 }
 
 // redirects page to google
 function goToGoogle() {
-	var code = encodeURIComponent(myUpdateFunction());
+	var textarea = document.getElementById('searchText'),
+		code = encodeURIComponent(textarea.value);
 	window.location.href = "https://google.com/webhp?q=m#q=" + code;
+}
+
+function enterpressalert(e, obj) {
+	var code = (e.keyCode ? e.keyCode : e.which);
+	if(code == 13) { //Enter keycode
+		goToGoogle();
+	}
 }

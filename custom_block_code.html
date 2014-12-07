@@ -1,7 +1,6 @@
 
 <!doctype html>
 <!-- https://rawgit.com/emcmanus11/blockly/master/custom_block_code.html -->
-<!-- encodeURI(uri) -->
 <html>
 	<head>
 		<meta charset="utf-8">
@@ -17,53 +16,121 @@
 			<!-- <block type="or"></block> -->
 		</xml>
 		<style type="text/css">
-			#searchBox {
-				width: 100%;
-				height: 100px;
-			}
-
+			html, body{
+				padding: 0;
+				margin: 0;
+				font-family: Arial;
+			}	
+			
 			#searchText {
-				margin-left: auto;
-				margin-right: auto;
-				margin-top: 12px;
-				margin-bottom: 12px;
+				/*margin-left: auto;*/
+				/*margin-right: auto;*/
 				width: 900px;
-				height: 76px;
+				height: 25px;
 				resize: none;
+				padding: 0;
 			}
 
 			#blocklyDiv {
-				height: 600px; 
+				height: 500px; 
 				width: 100%;
 			}
 
 			#submit {
-				top: -18px;
 				position: relative;
 				display: inline-block;
-				height: 76px;
-				width: 76px;
-				background: #000 url("http://www.clker.com/cliparts/n/U/H/1/H/u/search-icon-white-one-md.png") no-repeat center center;
-				background-size: 50px auto;
+				height: 27px;
+				width: 50px;
+				background: rgb(39, 107, 255) url("http://www.clker.com/cliparts/n/U/H/1/H/u/search-icon-white-one-md.png") no-repeat center center;
+				background-size: 15px auto;
+				padding: 0;
+				border: none;
+			}
+
+			#searchBox {
+				margin-left: 50px;
+				margin-top: 25px;
+				width: 100%;
+			}
+
+			#colorStrip ul {
+				margin: 0;
+				padding: 0;
+			}
+
+			.colorStrip-li {
+				display: inline-block;
+				list-style: none;
+				height: 30px;
+				width: 30px;
+				background-color: red;
+				/*margin: 7.5px;*/
+			}
+
+			#search_site {
+				background-color: #D95E20;
+			}
+
+			#exact_phrase {
+				background-color: #D9AB20;
+			}
+
+			#similar_term {
+				background-color: #5E20D9;
+			}
+
+			#dont_include {
+				background-color: #207DD9;
+			}
+
+			#range {
+				background-color: #20D920;
+			}
+
+			#filetype {
+				background-color: #BA20D9;
 			}
 		</style>
 	</head>
 	<body>
 		<div id="searchBox">
-			<textarea id="searchText" type="text"></textarea>
+			<div id="colorStrip">
+				<ul>
+					<li id="search_site" class="colorStrip-li"></li>
+					<li id="exact_phrase" class="colorStrip-li"></li>
+					<li id="similar_term" class="colorStrip-li"></li>
+					<li id="dont_include" class="colorStrip-li"></li>
+					<li id="range" class="colorStrip-li"></li>
+					<li id="filetype" class="colorStrip-li"></li>
+				</ul>
+			</div>
+			<textarea id="searchText" type="text" onKeyPress="enterpressalert(event, this)"></textarea>
 			<button id="submit" onclick="goToGoogle()"></button>
 		</div>
 		<div id="blocklyDiv"></div>
 		<div id="blocklyTrashcanDiv"></div>
-		<script src="blockly_compressed.js"></script>
-		<script src="blocks_compressed.js"></script>
+		<script src="blockly_uncompressed.js"></script>
+		<!-- // <script src="blocks_compressed.js"></script> -->
+		<script src="blocks/logic.js"></script>
+		<script src="blocks/loops.js"></script>
+		<script src="blocks/math.js"></script>
+		<script src="blocks/text.js"></script>
+		<script src="blocks/lists.js"></script>
+		<script src="blocks/colour.js"></script>
+		<script src="blocks/variables.js"></script>
+		<script src="blocks/procedures.js"></script>
 		<script src="javascript_compressed.js"></script>
 		<script src="msg/js/en.js"></script>
 		<script src="custom_block_code.js"></script>
 		<script>
 			Blockly.inject(document.getElementById('blocklyDiv'),
-				{toolbox: document.getElementById('toolbox'), trashcan: true, scrollbars: true});
-			Blockly.addChangeListener(myUpdateFunction);
+				{toolbox: document.getElementById('toolbox'), trashcan: true});//, scrollbars: true
+			var rootBlock = Blockly.Block.obtain(Blockly.mainWorkspace, 'refine_search');
+		    rootBlock.initSvg();
+		    rootBlock.render();
+		    rootBlock.setMovable(false);
+		    rootBlock.setDeletable(false);
+		    Blockly.addChangeListener(myUpdateFunction);
 		</script>
 	</body>
 </html>
