@@ -323,6 +323,72 @@ Blockly.Flyout.prototype.hide = function() {
   // https://neil.fraser.name/news/2014/08/09/
 };
 
+// Gets last block in a horizontally connected row
+Blockly.Flyout.prototype.getDeepestChild = function(ws) {
+  var children,
+  lastChild = ws,
+  i = 0;
+
+  while (lastChild != null) {
+    ws = lastChild;
+    children = ws.getChildren();
+    lastChild = children[children.length - 1];
+    i++;
+  }
+  if (i > 4) {
+    return null;
+  } else {
+    return ws;
+  }
+};
+
+// Gets last block in a horizontally connected row 
+//  that is not a given block
+Blockly.Flyout.prototype.getProperBlock = function(ws, block) {
+  var i = ws.length - 1;
+
+  while(i > 0 && ws[i] == block) {
+    i--;
+  }
+
+  return ws[i];
+};
+
+/**
+ * Adds blocks onclick
+ * @param {!Event} e The event.
+ * @return {!Function} Function to call when block is clicked.
+ * @private
+ */
+Blockly.Flyout.prototype.addBlockNoDrag = function(e) {
+  var flyout = this.flyout;
+  var originBlock = this.block;
+  
+  var xml = Blockly.Xml.blockToDom_(originBlock);
+  var block = Blockly.Xml.domToBlock(flyout.targetWorkspace_, xml);
+
+  var blocks = flyout.targetWorkspace_.topBlocks_,
+  toGet = flyout.getProperBlock(blocks, block),
+  deep = flyout.getDeepestChild(toGet),
+  deepConns,
+  dc,
+  blockConns,
+  bc;
+  
+  if (blocks && deep) {
+    deepConns = deep.getConnections_();
+    blockConns = block.getConnections_();
+    dc = deepConns[deepConns.length - 1];
+    bc = blockConns[0];
+    dc.connect(bc);
+    
+  } else {
+    var metrics = flyout.targetWorkspace_.getMetrics();
+    var height = metrics.contentHeight;
+    block.moveBy(10, height);
+  }
+};
+
 /**
  * Show and populate the flyout.
  * @param {!Array|string} xmlList List of blocks to show.
@@ -370,6 +436,7 @@ Blockly.Flyout.prototype.show = function(xmlList) {
 
   // Lay out the blocks vertically.
   var cursorY = margin;
+  var lis = ['search_site', 'exact_phrase', 'similar_term', 'dont_include', 'range', 'filetype'];
   for (var i = 0, block; block = blocks[i]; i++) {
     var allBlocks = block.getDescendants();
     for (var j = 0, child; child = allBlocks[j]; j++) {
@@ -414,6 +481,12 @@ Blockly.Flyout.prototype.show = function(xmlList) {
         block.svg_.addSelect));
     this.listeners_.push(Blockly.bindEvent_(rect, 'mouseout', block.svg_,
         block.svg_.removeSelect));
+    
+    // Added
+    var square = document.getElementById(lis[i]);
+    square.block = block;
+    square.flyout = this;
+    this.listeners_.push(Blockly.bindEvent_(square, 'click', square, this.addBlockNoDrag));
   }
 
   // IE 11 is an incompetant browser that fails to fire mouseout events.
@@ -609,6 +682,7 @@ Blockly.Flyout.prototype.createBlockFunc_ = function(originBlock) {
     // Create the new block by cloning the block in the flyout (via XML).
     var xml = Blockly.Xml.blockToDom_(originBlock);
     var block = Blockly.Xml.domToBlock(flyout.targetWorkspace_, xml);
+    
     // Place it in the same spot as the flyout copy.
     var svgRootOld = originBlock.getSvgRoot();
     if (!svgRootOld) {

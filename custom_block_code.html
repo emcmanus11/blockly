@@ -5,15 +5,12 @@
 	<head>
 		<meta charset="utf-8">
 		<xml id="toolbox" style="display: none">
-			<!-- <block type="refine_search"></block> -->
 			<block type="search_site"></block>
 			<block type="search_exact"></block>
-			<block type="search_similar"></block>
+			<block type="search_normal"></block>
 			<block type="do_not_include"></block>
 			<block type="within_this_range"></block>
 			<block type="search_filetype"></block>
-			<!-- <block type="wildcard"></block> -->
-			<!-- <block type="or"></block> -->
 		</xml>
 		<style type="text/css">
 			html, body{
@@ -23,8 +20,6 @@
 			}	
 			
 			#searchText {
-				/*margin-left: auto;*/
-				/*margin-right: auto;*/
 				width: 900px;
 				height: 25px;
 				resize: none;
@@ -41,7 +36,7 @@
 				display: inline-block;
 				height: 27px;
 				width: 50px;
-				background: rgb(39, 107, 255) url("http://www.clker.com/cliparts/n/U/H/1/H/u/search-icon-white-one-md.png") no-repeat center center;
+				background: rgb(39, 107, 255) url("search-icon-white-one-md.png") no-repeat center center;
 				background-size: 15px auto;
 				padding: 0;
 				border: none;
@@ -68,27 +63,27 @@
 			}
 
 			#search_site {
-				background-color: #D95E20;
+				background-color: #AC7D66;
 			}
 
 			#exact_phrase {
-				background-color: #D9AB20;
+				background-color: #A6935B;
 			}
 
 			#similar_term {
-				background-color: #5E20D9;
+				background-color: #745BA6;
 			}
 
 			#dont_include {
-				background-color: #207DD9;
+				background-color: #5B80A6;
 			}
 
 			#range {
-				background-color: #20D920;
+				background-color: #5BA65B;
 			}
 
 			#filetype {
-				background-color: #BA20D9;
+				background-color: #995BA6;
 			}
 		</style>
 	</head>
@@ -96,7 +91,8 @@
 		<div id="searchBox">
 			<div id="colorStrip">
 				<ul>
-					<li id="search_site" class="colorStrip-li"></li>
+					<li id="search_site" class="colorStrip-li"></li> 
+					<!-- onclick="bringInBlock()" -->
 					<li id="exact_phrase" class="colorStrip-li"></li>
 					<li id="similar_term" class="colorStrip-li"></li>
 					<li id="dont_include" class="colorStrip-li"></li>
@@ -113,19 +109,19 @@
 		<!-- // <script src="blockly_uncompressed.js"></script> -->
 		<script src="blocks_compressed.js"></script>
 		<!-- <script src="blocks/logic.js"></script>
-		// <script src="blocks/loops.js"></script>
-		// <script src="blocks/math.js"></script>
-		// <script src="blocks/text.js"></script>
-		// <script src="blocks/lists.js"></script>
-		// <script src="blocks/colour.js"></script>
-		// <script src="blocks/variables.js"></script>
-		// <script src="blocks/procedures.js"></script> -->
+		<script src="blocks/loops.js"></script>
+		<script src="blocks/math.js"></script>
+		<script src="blocks/text.js"></script>
+		<script src="blocks/lists.js"></script>
+		<script src="blocks/colour.js"></script>
+		<script src="blocks/variables.js"></script>
+		<script src="blocks/procedures.js"></script>
 		<script src="javascript_compressed.js"></script>
-		<script src="msg/js/en.js"></script>
+		<script src="msg/js/en.js"></script> -->
 		<script src="custom_block_code.js"></script>
 		<script>
 			Blockly.inject(document.getElementById('blocklyDiv'),
-				{toolbox: document.getElementById('toolbox'), trashcan: true});//, scrollbars: true
+				{toolbox: document.getElementById('toolbox'), trashcan: true});
 			var rootBlock = Blockly.Block.obtain(Blockly.mainWorkspace, 'refine_search');
 		    rootBlock.initSvg();
 		    rootBlock.render();

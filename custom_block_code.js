@@ -3,7 +3,6 @@
 // refine search -- beginning block
 Blockly.Blocks['refine_search'] = {
   init: function() {
-    //this.setHelpUrl('http://www.example.com/');
     this.setColour(330);
     this.appendValueInput("NAME")
         .appendField("refine search");
@@ -16,7 +15,6 @@ Blockly.Blocks['refine_search'] = {
 // site block
 Blockly.Blocks['search_site'] = {
 	init: function() {
-	    //this.setHelpUrl('http://www.example.com/');
 	    this.appendValueInput("NAME2")
 	        .setCheck("String")
 	        .appendField("within site")
@@ -30,7 +28,6 @@ Blockly.Blocks['search_site'] = {
 // exact phrase block
 Blockly.Blocks['search_exact'] = {
 	init: function() {
-		//this.setHelpUrl('http://www.example.com/');
 		this.appendValueInput("NAME3")
 		    .setCheck("String")
 		    .appendField("exact phrase")
@@ -42,15 +39,14 @@ Blockly.Blocks['search_exact'] = {
 };
 
 // exact phrase block
-Blockly.Blocks['search_similar'] = {
+Blockly.Blocks['search_normal'] = {
 	init: function() {
-		//this.setHelpUrl('http://www.example.com/');
 		this.appendValueInput("NAME8")
 		    .setCheck("String")
-		    .appendField("similar term")
-		    .appendField(new Blockly.FieldTextInput("puppy"), "NAME8");
+		    .appendField("normal term")
+		    .appendField(new Blockly.FieldTextInput("What's a cat?"), "NAME8");
 		this.setOutput(true);
-		this.setTooltip('Search for words related to search term. Ex. kitten');
+		this.setTooltip('Search for a phrase like you normally would on google');
 		this.setColour(260);
 	}
 };
@@ -58,7 +54,6 @@ Blockly.Blocks['search_similar'] = {
 // do not include 
 Blockly.Blocks['do_not_include'] = {
 	init: function() {
-		//this.setHelpUrl('http://www.example.com/');
 		this.appendValueInput("NAME4")
 		    .setCheck("String")
 		    .appendField("do not include")
@@ -72,7 +67,6 @@ Blockly.Blocks['do_not_include'] = {
 //within range
 Blockly.Blocks['within_this_range'] = {
 	init: function() {
-		//this.setHelpUrl('http://www.example.com/');
 		this.appendValueInput("NAME")
 		    .setCheck("String")
 		    .appendField("range from")
@@ -88,7 +82,6 @@ Blockly.Blocks['within_this_range'] = {
 // search filetype
 Blockly.Blocks['search_filetype'] = {
 	init: function() {
-	    //this.setHelpUrl('http://www.example.com/');
 	    this.appendValueInput("NAME7")
 	        .setCheck("String")
 	        .appendField("filetype")
@@ -103,7 +96,6 @@ Blockly.Blocks['search_filetype'] = {
 //wildcard
 Blockly.Blocks['wildcard'] = {
 	init: function() {
-		//this.setHelpUrl('http://www.example.com/');
 		this.appendValueInput("NAME5")
 		    .appendField("wildcard");
 		this.setOutput(true);
@@ -115,7 +107,6 @@ Blockly.Blocks['wildcard'] = {
 // OR
 Blockly.Blocks['or'] = {
 	init: function() {
-		//this.setHelpUrl('http://www.example.com/');
 		this.appendValueInput("NAME6")
 		    .appendField("OR");
 		this.setOutput(true);
@@ -153,11 +144,11 @@ Blockly.JavaScript['search_exact'] = function(block) {
 };
 
 // simialr phrase block
-Blockly.JavaScript['search_similar'] = function(block) {
+Blockly.JavaScript['search_normal'] = function(block) {
 	var value_name = Blockly.JavaScript.valueToCode(block, 'NAME8', Blockly.JavaScript.ORDER_ATOMIC);
 	var text_name = block.getFieldValue('NAME8');
 	// TODO: Assemble JavaScript into code variable.
-	var code = '~' + text_name + " " + value_name;
+	var code = text_name + " " + value_name;
 	// TODO: Change ORDER_NONE to the correct strength.
 	return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
