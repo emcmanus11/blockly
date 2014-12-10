@@ -29,6 +29,7 @@
 			#blocklyDiv {
 				height: 400px; 
 				width: 95%;
+				margin: 0;
 			}
 
 			#submit {
@@ -102,7 +103,11 @@
 			}
 
 			#strip_container {
-
+				display: block;
+				position: relative;
+				width: 1000px;
+				margin-left: auto;
+				margin-right: auto;
 			}
 		</style>
 	</head>
@@ -128,6 +133,9 @@
 		<script src="blockly_compressed.js"></script>
 		<!-- // <script src="blockly_uncompressed.js"></script> -->
 		<script src="blocks_compressed.js"></script>
+		<!-- Uncomment files below to hack at the core javascript
+		     without having to rebuild every time
+		 -->
 		<!-- <script src="blocks/logic.js"></script>
 		<script src="blocks/loops.js"></script>
 		<script src="blocks/math.js"></script>
@@ -147,6 +155,7 @@
 		    rootBlock.render();
 		    rootBlock.setMovable(false);
 		    rootBlock.setDeletable(false);
+		    rootBlock.moveBy(10, 10);
 		    Blockly.addChangeListener(myUpdateFunction);
 		</script>
 	</body>
