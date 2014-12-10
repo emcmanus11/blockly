@@ -3,12 +3,11 @@
 // refine search -- beginning block
 Blockly.Blocks['refine_search'] = {
   init: function() {
-    this.setColour(330);
     this.appendValueInput("NAME")
+        .appendField(new Blockly.FieldImage("refine.png", 15, 15, "*"))
         .appendField("refine search");
     this.setTooltip('Drag the blocks to create a more specific search');
-    // this.setDeletable(false);
-    // this.setMovable(false);
+    // this.setColour(330);
   }
 };
 
@@ -21,7 +20,7 @@ Blockly.Blocks['search_site'] = {
 	        .appendField(new Blockly.FieldTextInput("reddit.com"), "NAME2");
 	    this.setOutput(true);
 	    this.setTooltip('Search for content within this site\n Ex. "reddit.com"');
-	    this.setColour(20);
+	    this.setColour(210);
 	}
 };
 
@@ -34,7 +33,7 @@ Blockly.Blocks['search_exact'] = {
 		    .appendField(new Blockly.FieldTextInput("cat paw"), "NAME3");
 		this.setOutput(true);
 		this.setTooltip('Search for these exact words in this exact order.');
-		this.setColour(45);
+		this.setColour(20);
 	}
 };
 
@@ -47,7 +46,7 @@ Blockly.Blocks['search_normal'] = {
 		    .appendField(new Blockly.FieldTextInput("What's a cat?"), "NAME8");
 		this.setOutput(true);
 		this.setTooltip('Search for a phrase like you normally would on google');
-		this.setColour(260);
+		this.setColour(45);
 	}
 };
 
@@ -60,7 +59,7 @@ Blockly.Blocks['do_not_include'] = {
 		    .appendField(new Blockly.FieldTextInput("kitten"), "NAME4");
 		this.setOutput(true);
 		this.setTooltip('Exclude this term from your search results');
-		this.setColour(210);
+		this.setColour(260);
 	}
 };
 
@@ -70,9 +69,9 @@ Blockly.Blocks['within_this_range'] = {
 		this.appendValueInput("NAME")
 		    .setCheck("String")
 		    .appendField("range from")
-		    .appendField(new Blockly.FieldTextInput("$10"), "NAME")
+		    .appendField(new Blockly.FieldTextInput("1991"), "NAME")
 		    .appendField("to")
-		    .appendField(new Blockly.FieldTextInput("$20"), "NAME1");
+		    .appendField(new Blockly.FieldTextInput("2001"), "NAME1");
 		this.setOutput(true);
 		this.setTooltip('Search within a number range\nEx. 1992 - 2012, $10 - $20');
 		this.setColour(120);
