@@ -20,7 +20,7 @@
 			}	
 			
 			#searchText {
-				width: 900px;
+				width: 840px;
 				height: 25px;
 				resize: none;
 				padding: 0;
@@ -44,6 +44,7 @@
 				background-size: 15px auto;
 				padding: 0;
 				border: none;
+				float: right;
 			}
 
 			#searchBox {
@@ -52,12 +53,13 @@
 				margin-left: auto;
 				width: 98%;
 				margin-top: 80px;
-				margin-bottom: 80px;
+				margin-bottom: 55px;
 			}
 
 			#colorStrip ul {
 				margin: 0;
 				padding: 0;
+				display: inline-block;
 			}
 
 			.colorStrip-li {
@@ -78,12 +80,12 @@
 
 			#search_site {
 				background-color: #5B80A6;
-				background-position-y: -10px;
+				background-position: -5px -11px;
 			}
 
 			#exact_phrase {
 				background-color: #AC7D66;
-				background-position-y: -50px;
+				background-position: -5px -50px;
 			}
 
 			#similar_term {
@@ -97,12 +99,12 @@
 
 			#range {
 				background-color: #5BA65B;
-				background-position-y: -150px;
+				background-position: -5px -150px;
 			}
 
 			#filetype {
 				background-color: #995BA6;
-				background-position-y: -113px;
+				background-position: -5px -113px;
 			}
 
 			#google_logo {
@@ -115,9 +117,17 @@
 			#strip_container {
 				display: block;
 				position: relative;
-				width: 1000px;
+				width: 900px;
 				margin-left: auto;
 				margin-right: auto;
+			}
+
+			#submit_container {
+				height: 30px;
+			}
+
+			#advanced_link {
+				float: right;
 			}
 		</style>
 	</head>
@@ -134,14 +144,17 @@
 						<li id="range" class="colorStrip-li"></li>
 						<li id="filetype" class="colorStrip-li"></li>
 					</ul>
+					<a id="advanced_link" href="https://support.google.com/websearch/answer/2466433?hl=en">Advanced Search</a>
 				</div>
-				<textarea id="searchText" type="text" onKeyPress="enterpressalert(event, this)"></textarea>
-				<button id="submit" onclick="goToGoogle()"></button>
+				<div id="submit_container">
+					<textarea id="searchText" type="text" onKeyPress="enterpressalert(event, this)"></textarea>
+					<button id="submit" onclick="goToGoogle()"></button>
+				</div>
 			</div>
 		</div>
 		<div id="blocklyDiv"></div>
-		<script src="blockly_compressed.js"></script> 
-		<!-- <script src="blockly_uncompressed.js"></script> --> 
+		<script src="blockly_compressed.js"></script>
+		<!-- <script src="blockly_uncompressed.js"></script> -->
 		<script src="blocks_compressed.js"></script>
 		<!-- Uncomment files below to hack at the core javascript
 		     without having to rebuild every time
@@ -153,14 +166,14 @@
 		<script src="blocks/lists.js"></script>
 		<script src="blocks/colour.js"></script>
 		<script src="blocks/variables.js"></script>
-		<script src="blocks/procedures.js"></script>--> 
+		<script src="blocks/procedures.js"></script> -->
 
 		<script src="javascript_compressed.js"></script>
 		<script src="msg/js/en.js"></script>
 		<script src="custom_block_code.js"></script>
 		<script>
 			Blockly.inject(document.getElementById('blocklyDiv'),
-				{toolbox: document.getElementById('toolbox'), trashcan: true});
+				{toolbox: document.getElementById('toolbox'), trashcan: true, scrollbars: true});
 			var rootBlock = Blockly.Block.obtain(Blockly.mainWorkspace, 'refine_search');
 		    rootBlock.initSvg();
 		    rootBlock.render();
