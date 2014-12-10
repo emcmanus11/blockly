@@ -27,8 +27,8 @@
 			}
 
 			#blocklyDiv {
-				height: 500px; 
-				width: 100%;
+				height: 400px; 
+				width: 95%;
 			}
 
 			#submit {
@@ -54,24 +54,30 @@
 			}
 
 			.colorStrip-li {
+				background: rgb(39, 107, 255) url("icons.png") no-repeat center center;
+				background-size: 40px auto;
+
+
 				display: inline-block;
 				list-style: none;
 				height: 30px;
 				width: 30px;
 				background-color: red;
-				/*margin: 7.5px;*/
 			}
 
 			#search_site {
 				background-color: #AC7D66;
+				background-position-y: -10px;
 			}
 
 			#exact_phrase {
 				background-color: #A6935B;
+				background-position-y: -50px;
 			}
 
 			#similar_term {
 				background-color: #745BA6;
+				background-image: none;
 			}
 
 			#dont_include {
@@ -80,31 +86,45 @@
 
 			#range {
 				background-color: #5BA65B;
+				background-position-y: -150px;
 			}
 
 			#filetype {
 				background-color: #995BA6;
+				background-position-y: -113px;
+			}
+
+			#google_logo {
+				height: 95px;
+				display: block;
+				margin-right: auto;
+				margin-left: auto;
+			}
+
+			#strip_container {
+
 			}
 		</style>
 	</head>
 	<body>
 		<div id="searchBox">
-			<div id="colorStrip">
-				<ul>
-					<li id="search_site" class="colorStrip-li"></li> 
-					<!-- onclick="bringInBlock()" -->
-					<li id="exact_phrase" class="colorStrip-li"></li>
-					<li id="similar_term" class="colorStrip-li"></li>
-					<li id="dont_include" class="colorStrip-li"></li>
-					<li id="range" class="colorStrip-li"></li>
-					<li id="filetype" class="colorStrip-li"></li>
-				</ul>
+			<img id="google_logo" src="Google-logo.png">
+			<div id="strip_container">
+				<div id="colorStrip">
+					<ul>
+						<li id="search_site" class="colorStrip-li"></li> 
+						<li id="exact_phrase" class="colorStrip-li"></li>
+						<li id="similar_term" class="colorStrip-li"></li>
+						<li id="dont_include" class="colorStrip-li"></li>
+						<li id="range" class="colorStrip-li"></li>
+						<li id="filetype" class="colorStrip-li"></li>
+					</ul>
+				</div>
+				<textarea id="searchText" type="text" onKeyPress="enterpressalert(event, this)"></textarea>
+				<button id="submit" onclick="goToGoogle()"></button>
 			</div>
-			<textarea id="searchText" type="text" onKeyPress="enterpressalert(event, this)"></textarea>
-			<button id="submit" onclick="goToGoogle()"></button>
 		</div>
 		<div id="blocklyDiv"></div>
-		<div id="blocklyTrashcanDiv"></div>
 		<script src="blockly_compressed.js"></script>
 		<!-- // <script src="blockly_uncompressed.js"></script> -->
 		<script src="blocks_compressed.js"></script>
@@ -115,9 +135,9 @@
 		<script src="blocks/lists.js"></script>
 		<script src="blocks/colour.js"></script>
 		<script src="blocks/variables.js"></script>
-		<script src="blocks/procedures.js"></script>
+		<script src="blocks/procedures.js"></script> -->
 		<script src="javascript_compressed.js"></script>
-		<script src="msg/js/en.js"></script> -->
+		<script src="msg/js/en.js"></script>
 		<script src="custom_block_code.js"></script>
 		<script>
 			Blockly.inject(document.getElementById('blocklyDiv'),

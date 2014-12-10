@@ -374,7 +374,7 @@ Blockly.Flyout.prototype.addBlockNoDrag = function(e) {
   dc,
   blockConns,
   bc;
-  
+
   if (blocks && deep) {
     deepConns = deep.getConnections_();
     blockConns = block.getConnections_();
@@ -387,6 +387,9 @@ Blockly.Flyout.prototype.addBlockNoDrag = function(e) {
     var height = metrics.contentHeight;
     block.moveBy(10, height);
   }
+  // Highlights input box of newly created button
+  var input = block.inputList[0].fieldRow[1];
+  input.showEditor_();
 };
 
 /**
