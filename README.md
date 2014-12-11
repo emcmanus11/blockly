@@ -59,6 +59,7 @@ on the side of the blocks to describe what they do. The blocks also have
 tooltips when a user hovers them, giving more details and examples on how to 
 use the blocks. 
 
+
 Technologies Used
 ====================
 We added JavaScript, HTML, and CSS to the Blockly API for this project.
